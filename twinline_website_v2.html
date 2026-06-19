@@ -1,0 +1,836 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="TWIN LINE PRINT - Solusi Digital Printing & Desain Grafis untuk kebutuhan personal maupun bisnis. Cetak custom berkualitas mulai dari jumlah kecil.">
+<title>TWIN LINE PRINT - Custom Print Made Simple</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy: #0B1F3A;
+  --navy-mid: #122849;
+  --cyan: #00C2E0;
+  --cyan-light: #E0F9FD;
+  --magenta: #E91E8C;
+  --yellow: #F5C518;
+  --white: #FFFFFF;
+  --gray-50: #F8FAFC;
+  --gray-100: #F1F5F9;
+  --gray-300: #CBD5E1;
+  --gray-500: #64748B;
+  --gray-700: #334155;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: 'Inter', sans-serif; color: var(--navy); background: var(--white); overflow-x: hidden; }
+
+/* NAVBAR */
+.navbar {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+  background: rgba(255,255,255,0.96); backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(11,31,58,0.07); transition: box-shadow 0.3s;
+}
+.navbar.scrolled { box-shadow: 0 4px 24px rgba(11,31,58,0.08); }
+.nav-inner {
+  max-width: 1200px; margin: 0 auto; padding: 0 24px;
+  height: 72px; display: flex; align-items: center; justify-content: space-between;
+}
+.nav-logo img { height: 35px; width: auto;  margin-left: -22px; }
+.nav-links { display: flex; align-items: center; gap: 4px; list-style: none; }
+.nav-links a {
+  text-decoration: none; color: var(--gray-700); font-size: 14px; font-weight: 500;
+  padding: 8px 16px; border-radius: 999px; transition: all 0.2s;
+}
+.nav-links a:hover { background: var(--gray-100); color: var(--navy); }
+.nav-cta { background: var(--navy) !important; color: var(--white) !important; font-weight: 600 !important; }
+.nav-cta:hover { background: var(--cyan) !important; }
+.hamburger {
+  display: none; flex-direction: column; gap: 5px; cursor: pointer;
+  padding: 8px; border: none; background: none;
+}
+.hamburger span { width: 24px; height: 2px; background: var(--navy); border-radius: 2px; display: block; transition: all 0.3s; }
+.mobile-menu {
+  display: none; position: fixed; top: 72px; left: 0; right: 0;
+  background: white; padding: 16px 24px 24px;
+  border-bottom: 1px solid var(--gray-100);
+  box-shadow: 0 8px 24px rgba(11,31,58,0.08); z-index: 999;
+}
+.mobile-menu.open { display: block; }
+.mobile-menu a {
+  display: block; padding: 14px 0; color: var(--navy);
+  text-decoration: none; font-weight: 500; border-bottom: 1px solid var(--gray-100); font-size: 16px;
+}
+.mobile-menu a:last-child { border-bottom: none; }
+
+/* HERO */
+.hero {
+  min-height: 100vh; display: flex; align-items: center;
+  padding: 120px 24px 80px; background: var(--white); position: relative; overflow: hidden;
+}
+.hero-bg-1 {
+  position: absolute; top: -120px; right: -120px; width: 560px; height: 560px;
+  background: radial-gradient(circle, rgba(0,194,224,0.07) 0%, transparent 70%);
+  border-radius: 50%; pointer-events: none;
+}
+.hero-bg-2 {
+  position: absolute; bottom: -150px; left: -100px; width: 480px; height: 480px;
+  background: radial-gradient(circle, rgba(233,30,140,0.05) 0%, transparent 70%);
+  border-radius: 50%; pointer-events: none;
+}
+.hero-inner {
+  max-width: 1200px; margin: 0 auto; width: 100%;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; position: relative; z-index: 1;
+}
+.hero-badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: var(--cyan-light); color: #0098b0;
+  font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+  padding: 6px 14px; border-radius: 999px; margin-bottom: 24px;
+}
+.badge-dot { width: 6px; height: 6px; background: var(--cyan); border-radius: 50%; animation: pulse 2s infinite; }
+@keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.5;transform:scale(1.4)} }
+.hero-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(38px, 5vw, 62px); font-weight: 800;
+  line-height: 1.1; color: var(--navy); margin-bottom: 20px; letter-spacing: -0.02em;
+}
+.hero-title .ac { color: var(--cyan); }
+.hero-title .am { color: var(--magenta); }
+.hero-sub { font-size: 17px; color: var(--gray-500); line-height: 1.65; margin-bottom: 32px; max-width: 420px; }
+.hero-chips { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 36px; }
+.chip {
+  font-size: 11px; font-weight: 600; padding: 5px 12px;
+  border-radius: 999px; border: 1.5px solid; letter-spacing: 0.04em;
+}
+.c1 { border-color: var(--navy); color: var(--navy); }
+.c2 { border-color: var(--cyan); color: #0098b0; }
+.c3 { border-color: var(--magenta); color: var(--magenta); }
+.hero-actions { display: flex; gap: 12px; flex-wrap: wrap; }
+.btn-primary {
+  display: inline-flex; align-items: center; gap: 9px;
+  background: var(--navy); color: var(--white); text-decoration: none;
+  font-weight: 700; font-size: 14px; padding: 15px 26px;
+  border-radius: 8px; transition: all 0.25s; font-family: 'Space Grotesk', sans-serif;
+}
+.btn-primary:hover { background: var(--cyan); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,194,224,0.3); }
+.btn-secondary {
+  display: inline-flex; align-items: center; gap: 9px;
+  background: transparent; color: var(--navy); text-decoration: none;
+  font-weight: 600; font-size: 14px; padding: 15px 26px;
+  border-radius: 8px; border: 1.5px solid var(--gray-300); transition: all 0.25s;
+  font-family: 'Space Grotesk', sans-serif;
+}
+.btn-secondary:hover { border-color: var(--navy); transform: translateY(-2px); }
+
+/* Hero Visual */
+.hero-visual { display: flex; justify-content: center; align-items: center; }
+.hero-card-stack { position: relative; width: 100%; max-width: 420px; }
+.hero-main-card {
+  background: var(--navy); border-radius: 24px; padding: 40px;
+  color: white; position: relative; overflow: hidden;
+  box-shadow: 0 32px 64px rgba(11,31,58,0.25);
+}
+.card-glow {
+  position: absolute; top: -60px; right: -60px; width: 200px; height: 200px;
+  background: radial-gradient(circle, rgba(0,194,224,0.28) 0%, transparent 70%);
+  border-radius: 50%;
+}
+.card-label { font-size: 10px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--cyan); margin-bottom: 10px; }
+.card-title { font-family: 'Space Grotesk', sans-serif; font-size: 20px; font-weight: 700; margin-bottom: 24px; line-height: 1.3; }
+.swatches { display: flex; gap: 8px; margin-bottom: 28px; }
+.sw { width: 28px; height: 28px; border-radius: 50%; border: 2px solid rgba(255,255,255,0.15); }
+.hero-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.h-stat {
+  background: rgba(255,255,255,0.07); border-radius: 8px;
+  padding: 14px; border: 1px solid rgba(255,255,255,0.07);
+}
+.h-stat-n { font-family: 'Space Grotesk', sans-serif; font-size: 22px; font-weight: 800; color: var(--cyan); margin-bottom: 3px; }
+.h-stat-l { font-size: 11px; color: rgba(255,255,255,0.55); font-weight: 500; }
+.float-b {
+  position: absolute; background: white; border-radius: 10px;
+  padding: 11px 14px; box-shadow: 0 8px 24px rgba(11,31,58,0.13);
+  display: flex; align-items: center; gap: 9px;
+}
+.fb1 { bottom: -18px; left: -22px; }
+.fb2 { top: -18px; right: -22px; }
+.fb-icon { width: 30px; height: 30px; border-radius: 7px; display: flex; align-items: center; justify-content: center; font-size: 14px; }
+.fb-label { font-size: 10px; color: #94A3B8; font-weight: 600; }
+.fb-val { font-size: 13px; color: var(--navy); font-weight: 700; }
+
+/* SECTIONS */
+section { padding: 96px 24px; }
+.section-inner { max-width: 1200px; margin: 0 auto; }
+.eyebrow {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-size: 11px; font-weight: 700; letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--cyan); margin-bottom: 14px;
+}
+.eyebrow::before { content:''; display: inline-block; width: 18px; height: 2px; background: var(--cyan); border-radius: 2px; }
+.eyebrow.center { justify-content: center; }
+.eyebrow.center::before { display: none; }
+.sec-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(26px, 3.2vw, 42px); font-weight: 800;
+  color: var(--navy); line-height: 1.15; letter-spacing: -0.02em;
+}
+.sec-sub { font-size: 16px; color: var(--gray-500); line-height: 1.7; max-width: 540px; }
+
+/* ABOUT */
+.about { background: var(--gray-50); }
+.about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+.about-content .sec-title { margin-bottom: 22px; }
+.about-text { font-size: 15px; color: var(--gray-700); line-height: 1.8; margin-bottom: 14px; }
+.about-meta { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 32px; }
+.meta-item { display: flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 600; color: var(--gray-700); }
+.meta-ic {
+  width: 30px; height: 30px; background: var(--cyan-light);
+  border-radius: 7px; display: flex; align-items: center; justify-content: center;
+}
+/* SVG icons for meta */
+.about-card { background: var(--navy); border-radius: 24px; padding: 36px; color: white; position: relative; overflow: hidden; }
+.about-glow {
+  position: absolute; bottom: -40px; right: -40px; width: 180px; height: 180px;
+  background: radial-gradient(circle, rgba(233,30,140,0.2) 0%, transparent 70%); border-radius: 50%;
+}
+.founder-row { display: flex; align-items: center; gap: 14px; margin-bottom: 28px; position: relative; z-index:1; }
+.f-avatar {
+  width: 52px; height: 52px;
+  background: linear-gradient(135deg, var(--cyan), var(--magenta));
+  border-radius: 50%; display: flex; align-items: center; justify-content: center;
+  font-family: 'Space Grotesk', sans-serif; font-size: 18px; font-weight: 800; color: white; flex-shrink: 0;
+}
+.f-name { font-family: 'Space Grotesk', sans-serif; font-size: 16px; font-weight: 700; margin-bottom: 2px; }
+.f-role { font-size: 12px; color: rgba(255,255,255,0.55); }
+.founded-box { background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.09); border-radius: 10px; padding: 18px; position: relative; z-index:1; }
+.f-year { font-family: 'Space Grotesk', sans-serif; font-size: 36px; font-weight: 800; color: var(--cyan); line-height: 1; margin-bottom: 3px; }
+.f-sub { font-size: 12px; color: rgba(255,255,255,0.5); }
+.online-pill {
+  display: inline-flex; align-items: center; gap: 7px;
+  background: rgba(0,194,224,0.14); color: var(--cyan);
+  border-radius: 999px; padding: 7px 14px;
+  font-size: 11px; font-weight: 700; margin-top: 18px;
+  position: relative; z-index:1; letter-spacing: 0.06em; text-transform: uppercase;
+}
+
+/* SERVICES */
+.services { background: var(--white); }
+.services-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 48px; flex-wrap: wrap; gap: 20px; }
+.services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.service-card {
+  border: 1.5px solid var(--gray-100); border-radius: 20px;
+  padding: 32px 28px; transition: all 0.3s; position: relative; overflow: hidden; background: white;
+}
+.service-card:not(.cs):hover { border-color: var(--cyan); transform: translateY(-4px); box-shadow: 0 16px 40px rgba(0,194,224,0.1); }
+.service-card.cs { background: var(--gray-50); }
+.svc-icon {
+  width: 48px; height: 48px; border-radius: 10px;
+  display: flex; align-items: center; justify-content: center; margin-bottom: 20px;
+}
+.svc-name { font-family: 'Space Grotesk', sans-serif; font-size: 18px; font-weight: 700; color: var(--navy); margin-bottom: 10px; }
+.svc-desc { font-size: 13px; color: var(--gray-500); line-height: 1.7; margin-bottom: 18px; }
+.svc-tag { display: inline-flex; align-items: center; gap: 5px; font-size: 11px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--cyan); }
+.cs-badge {
+  position: absolute; top: 18px; right: 18px;
+  background: var(--navy); color: white;
+  font-size: 9px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+  padding: 4px 9px; border-radius: 999px;
+}
+
+/* WHY US */
+.why-us { background: var(--navy); }
+.why-us .sec-title { color: white; }
+.why-header { text-align: center; margin-bottom: 56px; }
+.why-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; background: rgba(255,255,255,0.04); border-radius: 20px; overflow: hidden; }
+.why-item { background: var(--navy-mid); padding: 32px 28px; transition: background 0.2s; }
+.why-item:hover { background: rgba(0,194,224,0.07); }
+.why-icon { margin-bottom: 14px; display: block; }
+.why-title { font-family: 'Space Grotesk', sans-serif; font-size: 15px; font-weight: 700; color: white; margin-bottom: 7px; }
+.why-desc { font-size: 13px; color: rgba(255,255,255,0.5); line-height: 1.6; }
+
+/* HOW IT WORKS */
+.how { background: var(--gray-50); }
+.steps-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 28px; margin-top: 52px; position: relative; }
+.steps-line {
+  position: absolute; top: 27px; left: 80px; right: 80px; height: 1.5px;
+  background: linear-gradient(90deg, var(--cyan), var(--magenta)); opacity: 0.25; z-index: 0;
+}
+.step { position: relative; z-index: 1; text-align: center; }
+.step-num {
+  width: 54px; height: 54px; background: white; border: 1.5px solid var(--gray-100);
+  border-radius: 50%; display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 18px; font-family: 'Space Grotesk', sans-serif;
+  font-size: 17px; font-weight: 800; color: var(--navy);
+  box-shadow: 0 4px 12px rgba(11,31,58,0.07); transition: all 0.25s;
+}
+.step:hover .step-num { background: var(--cyan); border-color: var(--cyan); color: white; transform: scale(1.08); }
+.step-ico { width: 44px; height: 44px; background: rgba(0,194,224,0.08); border-radius: 10px; display: flex; align-items: center; justify-content: center; margin: 0 auto 14px; }
+.step-title { font-family: 'Space Grotesk', sans-serif; font-size: 14px; font-weight: 700; color: var(--navy); margin-bottom: 7px; }
+.step-desc { font-size: 12px; color: var(--gray-500); line-height: 1.6; }
+
+/* CONTACT */
+.contact { background: var(--white); }
+.contact-wrap { max-width: 760px; margin: 0 auto; text-align: center; }
+.contact-wrap .sec-title { margin-bottom: 14px; }
+.contact-wrap .sec-sub { margin: 0 auto 40px; }
+
+/* Contact icon buttons only */
+.contact-icons { display: flex; justify-content: center; gap: 16px; margin-bottom: 48px; }
+.icon-btn {
+  width: 300px; height: 52px; border-radius: 14px;
+  display: flex; align-items: center; justify-content: center;
+  text-decoration: none; transition: all 0.25s; border: 1.5px solid var(--gray-100);
+  text-decoration: none; font-family: 'Space Grotesk', sans-serif; font-weight: 500; font-size: 17px; color: var(--white); gap: 12px;
+}
+.icon-btn:hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(0,0,0,0.1); }
+.icon-btn.wa { background: #25D366; border-color: #25D366; }
+.icon-btn.wa:hover { background: #1eba57; border-color: #1eba57; box-shadow: 0 8px 20px rgba(37,211,102,0.3); }
+.icon-btn.ig { background: linear-gradient(135deg, #E91E8C, #FF6B35); border-color: transparent; }
+.icon-btn.ig:hover { opacity: 0.88; box-shadow: 0 8px 20px rgba(233,30,140,0.3); }
+
+/* Print Form */
+.print-form-card {
+  background: var(--gray-50); border: 1.5px solid var(--gray-100);
+  border-radius: 20px; padding: 40px; text-align: left;
+}
+.form-title {
+  font-family: 'Space Grotesk', sans-serif; font-size: 20px; font-weight: 700;
+  color: var(--navy); margin-bottom: 6px;
+}
+.form-sub { font-size: 13px; color: var(--gray-500); margin-bottom: 28px; }
+.form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.form-full { grid-column: 1 / -1; }
+.form-group { display: flex; flex-direction: column; gap: 6px; }
+.form-label { font-size: 12px; font-weight: 600; color: var(--navy); letter-spacing: 0.03em; }
+.form-input, .form-select, .form-textarea {
+  border: 1.5px solid var(--gray-300); border-radius: 8px;
+  padding: 11px 14px; font-size: 14px; font-family: 'Inter', sans-serif;
+  color: var(--navy); background: white; outline: none; transition: border-color 0.2s;
+  width: 100%;
+}
+.form-input:focus, .form-select:focus, .form-textarea:focus {
+  border-color: var(--cyan); box-shadow: 0 0 0 3px rgba(0,194,224,0.1);
+}
+.form-textarea { resize: vertical; min-height: 90px; }
+.form-select { appearance: none; cursor: pointer; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%2364748B' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 12px center; padding-right: 36px; }
+.form-submit {
+  display: inline-flex; align-items: center; gap: 9px;
+  background: var(--navy); color: white; border: none; cursor: pointer;
+  font-weight: 700; font-size: 14px; padding: 14px 28px;
+  border-radius: 8px; font-family: 'Space Grotesk', sans-serif;
+  transition: all 0.25s; margin-top: 6px; width: 100%; justify-content: center;
+}
+.form-submit:hover { background: var(--cyan); transform: translateY(-1px); box-shadow: 0 8px 20px rgba(0,194,224,0.3); }
+.form-note { font-size: 11px; color: var(--gray-500); text-align: center; margin-top: 12px; }
+
+/* FOOTER */
+footer { background: var(--navy); color: rgba(255,255,255,0.5); padding: 44px 24px; }
+.footer-inner {
+  max-width: 1200px; margin: 0 auto;
+  display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 20px;
+}
+.footer-logo { height: 34px; width: auto; filter: brightness(0) invert(1); opacity: 0.85; margin-bottom: 18px; display: block; }
+.footer-tagline { font-size: 12px; color: rgba(255,255,255,0.4); }
+.footer-links { display: flex; gap: 20px; flex-wrap: wrap; }
+.footer-links a { color: rgba(255,255,255,0.45); text-decoration: none; font-size: 13px; transition: color 0.2s; }
+.footer-links a:hover { color: var(--cyan); }
+.footer-copy { font-size: 12px; color: rgba(255,255,255,0.35); }
+
+/* Animations */
+.fade-up { opacity: 0; transform: translateY(22px); transition: opacity 0.6s ease, transform 0.6s ease; }
+.fade-up.visible { opacity: 1; transform: translateY(0); }
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .hero-inner { grid-template-columns: 1fr; gap: 40px; }
+  .hero-visual { display: none; }
+  .about-grid { grid-template-columns: 1fr; gap: 40px; }
+  .services-grid { grid-template-columns: repeat(2, 1fr); }
+  .why-grid { grid-template-columns: repeat(2, 1fr); }
+  .steps-grid { grid-template-columns: repeat(2, 1fr); }
+  .steps-line { display: none; }
+}
+@media (max-width: 768px) {
+  .nav-links { display: none; }
+  .hamburger { display: flex; }
+  section { padding: 64px 20px; }
+  .hero { padding: 100px 20px 60px; }
+  .services-grid { grid-template-columns: 1fr; }
+  .why-grid { grid-template-columns: 1fr; }
+  .steps-grid { grid-template-columns: 1fr; gap: 20px; }
+  .form-grid { grid-template-columns: 1fr; }
+  .form-full { grid-column: auto; }
+  .footer-inner { flex-direction: column; align-items: flex-start; }
+  .services-header { flex-direction: column; align-items: flex-start; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .fade-up { opacity: 1; transform: none; transition: none; }
+  * { animation: none !important; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar" id="navbar">
+  <div class="nav-inner">
+    <a href="#home" class="nav-logo">
+      <img src="TWINLINE LOGO PNG COLOR.png" alt="Twin Line Print Logo">
+        </a>
+    <ul class="nav-links">
+      <li><a href="#home">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#contact" class="nav-cta">Hubungi Kami</a></li>
+    </ul>
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#home" onclick="closeMobile()">Home</a>
+    <a href="#about" onclick="closeMobile()">About</a>
+    <a href="#services" onclick="closeMobile()">Services</a>
+    <a href="#contact" onclick="closeMobile()">Hubungi Kami</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-bg-1"></div>
+  <div class="hero-bg-2"></div>
+  <div class="hero-inner">
+    <div class="fade-up">
+      <div class="hero-badge"><span class="badge-dot"></span>Online Printing Service · Bandung</div>
+      <h1 class="hero-title">Custom Print<br>Made <span class="ac">Simple</span><span class="am">.</span></h1>
+      <p class="hero-sub">Solusi Digital Printing &amp; Desain Grafis untuk kebutuhan personal maupun bisnis.</p>
+      <div class="hero-chips">
+        <span class="chip c1">Custom Print</span>
+        <span class="chip c2">Small Quantity</span>
+        <span class="chip c3">Quality Result</span>
+      </div>
+      <div class="hero-actions">
+        <a href="https://wa.me/6285117734126?text=Halo%20Twin%20Line%20Print%2C%20saya%20ingin%20order%20cetak%20custom" target="_blank" class="btn-primary">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Order via WhatsApp
+        </a>
+        <a href="#services" class="btn-secondary">
+          Lihat Layanan
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <div class="hero-visual fade-up" style="transition-delay:.2s">
+      <div class="hero-card-stack">
+        <div class="float-b fb2">
+          <div class="fb-icon" style="background:#E0F9FD">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#00C2E0" stroke-width="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          </div>
+          <div><div class="fb-label">Kualitas</div><div class="fb-val">Terjamin</div></div>
+        </div>
+        <div class="hero-main-card">
+          <div class="card-glow"></div>
+          <div class="card-label">Twin Line Print · Bandung</div>
+          <div class="card-title">Cetak Custom<br>Sesuai Kebutuhan</div>
+          <div class="swatches">
+            <div class="sw" style="background:#0B1F3A"></div>
+            <div class="sw" style="background:#00C2E0"></div>
+            <div class="sw" style="background:#E91E8C"></div>
+            <div class="sw" style="background:#F5C518"></div>
+          </div>
+          <div class="hero-stats">
+            <div class="h-stat"><div class="h-stat-n">100%</div><div class="h-stat-l">Custom Design</div></div>
+            <div class="h-stat"><div class="h-stat-n">Min.1</div><div class="h-stat-l">Pcs Order</div></div>
+            <div class="h-stat"><div class="h-stat-n">Fast</div><div class="h-stat-l">Proses Order</div></div>
+            <div class="h-stat"><div class="h-stat-n">Online</div><div class="h-stat-l">Konsultasi</div></div>
+          </div>
+        </div>
+        <div class="float-b fb1">
+          <div class="fb-icon" style="background:#F0FFF4">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#25D366" stroke-width="2"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+          </div>
+          <div><div class="fb-label">Konsultasi</div><div class="fb-val">WhatsApp</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="section-inner">
+    <div class="about-grid">
+      <div class="about-content fade-up">
+        <div class="eyebrow">Tentang Kami</div>
+        <h2 class="sec-title">Printing Praktis,<br>Hasil Berkualitas</h2>
+        <p class="about-text">TWIN LINE PRINT hadir sebagai solusi digital printing yang memudahkan masyarakat untuk mencetak kebutuhan custom secara praktis, terutama bagi pelanggan yang membutuhkan jumlah cetak kecil namun tetap ingin mendapatkan hasil yang berkualitas.</p>
+        <p class="about-text">Berawal dari kebutuhan orang-orang yang ingin membuat undangan pernikahan custom dengan jumlah terbatas, kami hadir untuk membantu mencetak undangan custom mulai dari jumlah kecil yang biasanya sulit ditemukan di layanan printing konvensional.</p>
+        <p class="about-text">Selain undangan custom, kami juga menyediakan berbagai kebutuhan printing lainnya seperti sertifikat, kartu nama, spanduk, pin, dan berbagai kebutuhan cetak lainnya yang akan terus kami kembangkan secara bertahap.</p>
+        <div class="about-meta">
+          <div class="meta-item">
+            <div class="meta-ic">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#00C2E0" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+            </div>
+            3 Maret 2026
+          </div>
+          <div class="meta-item">
+            <div class="meta-ic">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#00C2E0" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 1118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            </div>
+            Bandung
+          </div>
+          <div class="meta-item">
+            <div class="meta-ic">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#00C2E0" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 010 20M12 2a15.3 15.3 0 000 20"/></svg>
+            </div>
+            Layanan Online
+          </div>
+        </div>
+      </div>
+      <div class="fade-up" style="transition-delay:.2s">
+        <div class="about-card">
+          <div class="about-glow"></div>
+          <div class="founder-row">
+            <div class="f-avatar">SG</div>
+            <div>
+              <div class="f-name">Slamet Abdul Gani</div>
+              <div class="f-role">Founder &amp; Owner · Twin Line Print</div>
+            </div>
+          </div>
+          <div class="founded-box">
+            <div style="font-size:10px;color:rgba(255,255,255,0.45);font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:6px">Tahun Berdiri</div>
+            <div class="f-year">2026</div>
+            <div class="f-sub">3 Maret 2026 · Bandung</div>
+          </div>
+          <div class="online-pill">
+            <span style="width:5px;height:5px;background:var(--cyan);border-radius:50%;animation:pulse 2s infinite"></span>
+            Online Printing Service
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services" id="services">
+  <div class="section-inner">
+    <div class="services-header">
+      <div>
+        <div class="eyebrow">Layanan Kami</div>
+        <h2 class="sec-title">Apa yang Bisa<br>Kami Cetak?</h2>
+      </div>
+      <p class="sec-sub" style="max-width:300px">Dari undangan pernikahan hingga kartu nama profesional — semua bisa custom sesuai kebutuhan Anda.</p>
+    </div>
+    <div class="services-grid">
+      <div class="service-card fade-up">
+        <div class="svc-icon" style="background:rgba(0,194,224,0.08)">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#00C2E0" stroke-width="1.5"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2z"/><path d="M16 2v4M8 2v4M2 10h20"/></svg>
+        </div>
+        <div class="svc-name">Undangan Custom</div>
+        <p class="svc-desc">Cetak undangan custom sesuai konsep acara Anda, cocok untuk kebutuhan jumlah kecil mulai dari kebutuhan personal.</p>
+        <div class="svc-tag">
+          <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          Tersedia Sekarang
+        </div>
+      </div>
+      <div class="service-card fade-up" style="transition-delay:.1s">
+        <div class="svc-icon" style="background:rgba(233,30,140,0.07)">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#E91E8C" stroke-width="1.5"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M16 10h.01M8 10h.01M12 10h.01"/></svg>
+        </div>
+        <div class="svc-name">Kartu Nama</div>
+        <p class="svc-desc">Cetak kartu nama profesional untuk kebutuhan bisnis dan networking dengan desain yang berkesan.</p>
+        <div class="svc-tag">
+          <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          Tersedia Sekarang
+        </div>
+      </div>
+      <div class="service-card fade-up" style="transition-delay:.2s">
+        <div class="svc-icon" style="background:rgba(245,197,24,0.1)">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#D4A800" stroke-width="1.5"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"/></svg>
+        </div>
+        <div class="svc-name">Sertifikat</div>
+        <p class="svc-desc">Cetak sertifikat untuk event, komunitas, sekolah, maupun kebutuhan profesional dengan kualitas premium.</p>
+        <div class="svc-tag">
+          <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          Tersedia Sekarang
+        </div>
+      </div>
+      <div class="service-card cs fade-up" style="transition-delay:.3s">
+        <div class="cs-badge">Coming Soon</div>
+        <div class="svc-icon" style="background:var(--gray-100)">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#94A3B8" stroke-width="1.5"><rect x="2" y="7" width="20" height="10" rx="2"/><path d="M2 11h20"/></svg>
+        </div>
+        <div class="svc-name" style="color:#94A3B8">Spanduk</div>
+        <p class="svc-desc">Cetak spanduk untuk promosi, event, dan kebutuhan bisnis Anda.</p>
+        <div class="svc-tag" style="color:#94A3B8">Segera Hadir</div>
+      </div>
+      <div class="service-card cs fade-up" style="transition-delay:.4s">
+        <div class="cs-badge">Coming Soon</div>
+        <div class="svc-icon" style="background:var(--gray-100)">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#94A3B8" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="3"/></svg>
+        </div>
+        <div class="svc-name" style="color:#94A3B8">Pin</div>
+        <p class="svc-desc">Pin custom untuk merchandise, komunitas, dan kebutuhan promosi.</p>
+        <div class="svc-tag" style="color:#94A3B8">Segera Hadir</div>
+      </div>
+      <div class="service-card cs fade-up" style="transition-delay:.5s">
+        <div class="cs-badge">Coming Soon</div>
+        <div class="svc-icon" style="background:var(--gray-100)">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#94A3B8" stroke-width="1.5"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 01-2-2v-5a2 2 0 012-2h16a2 2 0 012 2v5a2 2 0 01-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+        </div>
+        <div class="svc-name" style="color:#94A3B8">Produk Lainnya</div>
+        <p class="svc-desc">Berbagai produk cetak lainnya yang akan terus kami kembangkan.</p>
+        <div class="svc-tag" style="color:#94A3B8">Segera Hadir</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY US -->
+<section class="why-us">
+  <div class="section-inner">
+    <div class="why-header fade-up">
+      <div class="eyebrow center">Keunggulan Kami</div>
+      <h2 class="sec-title" style="text-align:center">Kenapa Memilih<br>Twin Line Print?</h2>
+    </div>
+    <div class="why-grid fade-up" style="transition-delay:.2s">
+      <div class="why-item">
+        <span class="why-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#00C2E0" stroke-width="1.5"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 002 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/></svg>
+        </span>
+        <div class="why-title">Bisa Cetak Jumlah Kecil</div>
+        <p class="why-desc">Tidak perlu memesan dalam jumlah besar. Kami melayani pemesanan mulai dari 1 pcs.</p>
+      </div>
+      <div class="why-item">
+        <span class="why-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#00C2E0" stroke-width="1.5"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+        </span>
+        <div class="why-title">Custom Sesuai Kebutuhan</div>
+        <p class="why-desc">Desain sepenuhnya disesuaikan dengan konsep dan keinginan Anda.</p>
+      </div>
+      <div class="why-item">
+        <span class="why-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#00C2E0" stroke-width="1.5"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        </span>
+        <div class="why-title">Praktis Tanpa ke Toko</div>
+        <p class="why-desc">Semua proses dilakukan secara online. Order dari mana saja, kapan saja.</p>
+      </div>
+      <div class="why-item">
+        <span class="why-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#00C2E0" stroke-width="1.5"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+        </span>
+        <div class="why-title">Konsultasi via WhatsApp</div>
+        <p class="why-desc">Diskusikan kebutuhan printing Anda dengan mudah melalui WhatsApp.</p>
+      </div>
+      <div class="why-item">
+        <span class="why-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#00C2E0" stroke-width="1.5"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
+        </span>
+        <div class="why-title">Personal &amp; Bisnis</div>
+        <p class="why-desc">Cocok untuk kebutuhan personal maupun pelaku bisnis dan UMKM.</p>
+      </div>
+      <div class="why-item">
+        <span class="why-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#00C2E0" stroke-width="1.5"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        </span>
+        <div class="why-title">Desain Bisa Disesuaikan</div>
+        <p class="why-desc">Kirim referensi atau konsep Anda — kami akan wujudkan menjadi desain siap cetak.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how" id="how">
+  <div class="section-inner">
+    <div style="text-align:center" class="fade-up">
+      <div class="eyebrow center">Cara Order</div>
+      <h2 class="sec-title">4 Langkah Mudah<br>untuk Mulai Cetak</h2>
+    </div>
+    <div class="steps-grid">
+      <div class="steps-line"></div>
+      <div class="step fade-up" style="transition-delay:.1s">
+        <div class="step-num">1</div>
+        <div class="step-ico">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#00C2E0" stroke-width="1.5"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+        </div>
+        <div class="step-title">Pilih Produk</div>
+        <p class="step-desc">Pilih produk printing yang sesuai dengan kebutuhan Anda.</p>
+      </div>
+      <div class="step fade-up" style="transition-delay:.2s">
+        <div class="step-num">2</div>
+        <div class="step-ico">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#00C2E0" stroke-width="1.5"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+        </div>
+        <div class="step-title">Kirim Detail &amp; Desain</div>
+        <p class="step-desc">Kirimkan detail dan konsep desain Anda via WhatsApp.</p>
+      </div>
+      <div class="step fade-up" style="transition-delay:.3s">
+        <div class="step-num">3</div>
+        <div class="step-ico">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#00C2E0" stroke-width="1.5"><polyline points="20 6 9 17 4 12"/></svg>
+        </div>
+        <div class="step-title">Konfirmasi &amp; Proses</div>
+        <p class="step-desc">Konfirmasi harga, approve desain, pesanan mulai diproses.</p>
+      </div>
+      <div class="step fade-up" style="transition-delay:.4s">
+        <div class="step-num">4</div>
+        <div class="step-ico">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#00C2E0" stroke-width="1.5"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+        </div>
+        <div class="step-title">Pesanan Dikirim</div>
+        <p class="step-desc">Pesanan selesai dan dikirimkan langsung ke alamat Anda.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="section-inner">
+    <div class="contact-wrap fade-up">
+      <div class="eyebrow center">Hubungi Kami</div>
+      <h2 class="sec-title">Start Your Custom Print</h2>
+      <p class="sec-sub">Isi form di bawah dan kami akan segera menghubungi Anda untuk mendiskusikan kebutuhan printing.</p>
+
+      <!-- Icon buttons only -->
+      <div class="contact-icons">
+        <a href="https://wa.me/6285117734126" target="_blank" class="icon-btn wa" title="Chat WhatsApp">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="white" ><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Konsultasi Via WhatsApp
+        </a>
+        <a href="https://instagram.com/twinline.print" target="_blank" class="icon-btn ig" title="Instagram @twinline.print">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+          Follow Us on Instagram!
+        </a>
+      </div>
+
+      <!-- Print Form -->
+      <div class="print-form-card">
+        <div class="form-title">Form Order Print</div>
+        <div class="form-sub">Isi detail kebutuhan cetak Anda — kami akan konfirmasi via WhatsApp.</div>
+        <div class="form-grid">
+          <div class="form-group">
+            <label class="form-label">Nama Lengkap *</label>
+            <input class="form-input" type="text" placeholder="Contoh: Budi Santoso" id="f-name">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Nomor WhatsApp *</label>
+            <input class="form-input" type="tel" placeholder="08xx-xxxx-xxxx" id="f-wa">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Produk yang Diinginkan *</label>
+            <select class="form-select" id="f-product">
+              <option value="">Pilih produk...</option>
+              <option>Undangan Custom</option>
+              <option>Kartu Nama</option>
+              <option>Sertifikat</option>
+              <option>Lainnya</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Jumlah (pcs) *</label>
+            <input class="form-input" type="number" placeholder="Contoh: 50" min="1" id="f-qty">
+          </div>
+          <div class="form-group form-full">
+            <label class="form-label">Ukuran / Spesifikasi</label>
+            <input class="form-input" type="text" placeholder="Contoh: A5, kertas art paper 260gr, dsb." id="f-spec">
+          </div>
+          <div class="form-group form-full">
+            <label class="form-label">Deskripsi &amp; Konsep Desain</label>
+            <textarea class="form-textarea" placeholder="Ceritakan konsep desain Anda, warna dominan, tema, referensi, dll." id="f-desc"></textarea>
+          </div>
+          <div class="form-group form-full">
+            <label class="form-label">Deadline / Target Selesai</label>
+            <input class="form-input" type="date" id="f-date">
+          </div>
+          <div class="form-full">
+            <button class="form-submit" onclick="submitForm()">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+              Kirim via WhatsApp
+            </button>
+            <p class="form-note">Form ini akan membuka WhatsApp dengan detail pesanan Anda secara otomatis.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div>
+      <img src="TWINLINE LOGO PNG white.png" alt="TWIN LINE PRINT" class="footer-logo">
+      <div class="footer-tagline">Digital Print &amp; Graphic Design · Bandung</div>
+    </div>
+    <div class="footer-links">
+      <a href="#home">Home</a>
+      <a href="#about">About</a>
+      <a href="#services">Services</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <div class="footer-copy">© 2026 TWIN LINE PRINT. All Rights Reserved.</div>
+  </div>
+</footer>
+
+<script>
+// Navbar scroll
+const navbar = document.getElementById('navbar');
+window.addEventListener('scroll', () => { navbar.classList.toggle('scrolled', window.scrollY > 20); });
+
+// Mobile menu
+const hamburger = document.getElementById('hamburger');
+const mobileMenu = document.getElementById('mobileMenu');
+hamburger.addEventListener('click', () => mobileMenu.classList.toggle('open'));
+function closeMobile() { mobileMenu.classList.remove('open'); }
+
+// Scroll animations
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
+document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+// Smooth nav
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    const t = document.querySelector(a.getAttribute('href'));
+    if (t) { e.preventDefault(); t.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+  });
+});
+
+// Form submit to WhatsApp
+function submitForm() {
+  const name = document.getElementById('f-name').value.trim();
+  const wa = document.getElementById('f-wa').value.trim();
+  const product = document.getElementById('f-product').value;
+  const qty = document.getElementById('f-qty').value.trim();
+  const spec = document.getElementById('f-spec').value.trim();
+  const desc = document.getElementById('f-desc').value.trim();
+  const date = document.getElementById('f-date').value;
+
+  if (!name || !wa || !product || !qty) {
+    alert('Mohon lengkapi field yang wajib diisi (*).');
+    return;
+  }
+
+  let msg = `Halo Twin Line Print! 👋\n\nSaya ingin order cetak:\n\n`;
+  msg += `📌 *Nama:* ${name}\n`;
+  msg += `📱 *WA:* ${wa}\n`;
+  msg += `🖨️ *Produk:* ${product}\n`;
+  msg += `📦 *Jumlah:* ${qty} pcs\n`;
+  if (spec) msg += `📐 *Spesifikasi:* ${spec}\n`;
+  if (desc) msg += `🎨 *Konsep/Desain:* ${desc}\n`;
+  if (date) msg += `⏰ *Deadline:* ${date}\n`;
+  msg += `\nMohon info lebih lanjut. Terima kasih!`;
+
+  const encoded = encodeURIComponent(msg);
+  window.open(`https://wa.me/6285117734126?text=${encoded}`, '_blank');
+}
+</script>
+</body>
+</html>
